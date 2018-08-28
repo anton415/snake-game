@@ -16,7 +16,12 @@
 
   <!-- Here I will add my JavaScript code to control the game. -->
   <script>
-    // I will fill this in next.
+    // Defining the canvas, ctx, width, and height variables.
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    var width = canvas.width;
+    var height = canvas.height;
 
     // Dividing the Canvas into Blocks
     var blockSize = 10;
@@ -34,6 +39,9 @@
       ctx.fillRect(0, 0, blockSize, height);
       ctx.fillRect(width - blockSize, 0, blockSize, height);
     };
+
+    // Displaying the score.
+    ctx.fillText("Hello world!", 50, 50);
   </script>
 </body>
 </html>
