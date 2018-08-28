@@ -41,7 +41,21 @@
     };
 
     // Displaying the score.
+    ctx.textBaseline = "top";
     ctx.fillText("Hello world!", 50, 50);
+
+    // Setting the Size and Font.
+    ctx.font = "20px Courier";
+    ctx.fillText("Courier", 50, 50);
+
+    ctx.font = "24px Comic Sans MS";
+    ctx.fillText("Comic Sans", 50, 100);
+
+    ctx.font = "18px Arial";
+    ctx.fillText("Areal", 50, 150);
+
+    // Draw something :)
+    drawBorder();
   </script>
 </body>
 </html>
