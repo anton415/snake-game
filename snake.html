@@ -16,6 +16,17 @@
 
   <!-- Here I will add my JavaScript code to control the game. -->
   <script>
+    // Using setInterval to Animate the Game.
+    var intervalId = setInterval(function() {
+      ctx.clearRect(0, 0, width, height);
+      drawScore();
+      // snake.move();
+      // snake.draw();
+      // apple.draw();
+      drawBorder();
+      gameOver();
+    }, 100);
+
     // Defining the canvas, ctx, width, and height variables.
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
@@ -49,9 +60,15 @@
       ctx.fillText("Score: " + score, blockSize, blockSize);
     }
 
-    // Draw something :)
-    drawBorder();
-    drawScore();
+    // Ending the game.
+    var gameOver = function() {
+      clearInterval(intervalId);
+      ctx.font = "60px Couriier";
+      ctx.fillStyle = "Black";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Game Over", width / 2, height / 2);
+    }
   </script>
 </body>
 </html>
