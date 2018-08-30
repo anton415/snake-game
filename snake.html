@@ -91,6 +91,13 @@
       ctx.fillStyle = color;
       circle(centerX, centerY, blockSize / 2, true);
     }
+
+    // Adding the equal method.
+    Block.prototype.equal = function(otherBlock) {
+      return this.col === otherBlock.col && this.row === otherBlock.row;
+    };
+
+    
   </script>
 </body>
 </html>
