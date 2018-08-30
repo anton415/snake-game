@@ -84,7 +84,13 @@
       ctx.fillRect(x, y, blockSize, blockSize);
     };
 
-    
+    // Adding the draw circle method.
+    Block.prototype.drawCircle = function(color) {
+      var centerX = this.col * blockSize + blockSize / 2;
+      var centerY = this.row * blockSize + blockSize / 2;
+      ctx.fillStyle = color;
+      circle(centerX, centerY, blockSize / 2, true);
+    }
   </script>
 </body>
 </html>
