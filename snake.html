@@ -200,6 +200,11 @@
     var Apple = function() {
       this.position = new Block(10);
     };
+
+    // Drawong the apple.
+    Apple.prototype.draw = function() {
+      this.position.drawCircle("LimeGreen");
+    };
   </script>
 </body>
 </html>
