@@ -16,16 +16,6 @@
 
   <!-- Here I will add my JavaScript code to control the game. -->
   <script>
-    // Using setInterval to Animate the Game.
-    var intervalId = setInterval(function() {
-      ctx.clearRect(0, 0, width, height);
-      drawScore();
-      // snake.move();
-      // snake.draw();
-      // apple.draw();
-      drawBorder();
-    }, 100);
-
     // Defining the canvas, ctx, width, and height variables.
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
@@ -69,6 +59,17 @@
       ctx.fillText("Game Over", width / 2, height / 2);
     }
 
+
+    var circle = function(x, y, radius, fillCircle) {
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+      if (fillCircle) {
+        ctx.fill();
+      } else {
+        ctx.stroke();
+      }
+    };
+
     // Building the block constructor.
     var Block = function(col, row) {
       this.col = col;
@@ -110,11 +111,9 @@
     // Drawing the Snake.
     Snake.prototype.draw = function() {
       for(var i = 0; i < this.segments.length; i++) {
-        this.segment[i].drawSquare("Blue");
+        this.segments[i].drawSquare("Blue");
       }
     };
-
-    // Moving the Snake.
 
     // Adding the move method.
     Snake.prototype.move = function() {
@@ -167,21 +166,6 @@
       return wallCollision || selfCollision;
     };
 
-    // Adding the keydown event handler.
-    var directions = {
-      37: "left",
-      38: "up",
-      39: "right",
-      40: "down"
-    };
-
-    $("body").keydown(function(event) {
-      var newDirection = directions[event.keyCode];
-      if(newDirection != undefined) {
-        snake.setDirection(newDirection);
-      }
-    });
-
     // Adding the setDirection method.
     Snake.prototype.setDirection = function (newDirection) {
       if(this.derection === "up" && newDirection === "down") {
@@ -198,7 +182,7 @@
 
     // Writing the apple constructor.
     var Apple = function() {
-      this.position = new Block(10);
+      this.position = new Block(10, 10);
     };
 
     // Drawong the apple.
@@ -212,6 +196,36 @@
       var randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
       this.position = new Block(randomCol, randomRow);
     };
+
+    // Create the snake and apple objects.
+    var snake = new Snake();
+    var apple = new Apple();
+
+    // Using setInterval to Animate the Game.
+    var intervalId = setInterval(function() {
+      ctx.clearRect(0, 0, width, height);
+      drawScore();
+      snake.move();
+      snake.draw();
+      apple.draw();
+      drawBorder();
+    }, 100);
+
+    // Adding the keydown event handler.
+    var directions = {
+      37: "left",
+      38: "up",
+      39: "right",
+      40: "down"
+    };
+
+    // Keydown handler.
+    $("body").keydown(function(event) {
+      var newDirection = directions[event.keyCode];
+      if(newDirection != undefined) {
+        snake.setDirection(newDirection);
+      }
+    });
   </script>
 </body>
 </html>
